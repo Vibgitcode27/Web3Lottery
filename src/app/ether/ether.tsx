@@ -4,7 +4,7 @@ import { BrowserProvider, parseUnits , ContractFactory } from "ethers";
 import { HDNodeWallet } from "ethers/wallet";
 import { BYTE_CODE , ABI} from "../../../config";
 import { VrfCoordinator , enterenceFee , gasLane , subscription_Id , callbackGasLimit , interval } from "../../../arguments.config";
-import { getAccount } from "@/lib/features/providers/provider";
+import { getAccount , getSigner } from "@/lib/features/providers/provider";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import Snackbar , { SnackbarOrigin } from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
@@ -29,9 +29,9 @@ export default function Ethers()
 
     const dispatch = useAppDispatch();
     const account = useAppSelector((state) => state.account.account);
-    let signer : any = null
+    const signer = useAppSelector((state) => state.account.signer);
     let provider;
-    
+
     // let contract_Address;
     // const deployContract = async() => {
     //     const factory = new ContractFactory(ABI , BYTE_CODE , signer);
@@ -41,10 +41,15 @@ export default function Ethers()
     //     console.log(contract_Address);
     // }
 
-    let putState = (value : any) => {
-        dispatch(getAccount(value))
+    // Function Calls
+
+    let putAccount = (value : any) => {
+        dispatch(getAccount(value));
     }
 
+    let putSigner = (value : any) => {
+        dispatch(getSigner(value));
+    }
     const connetToMetmask = async() => {
     
         if(window.ethereum == null)
@@ -56,22 +61,29 @@ export default function Ethers()
         provider = new ethers.BrowserProvider(window.ethereum);
         console.log("provider : " , provider)
         // 
-        signer = await provider.getSigner();
+        let signer = await provider.getSigner();
         console.log("signer : " , signer);
         // deployContract();
+        
+        putSigner(signer);
 
+        console.log()
         let address : any = await signer.getAddress()
         console.log(address);
 
-        putState(address);
+        putAccount(address);
     }
+
+    // Render Components
 
     return (
         <main>
             { account ? 
                 (
                 <div>
-                    <button onClick={() => {dispatch(getAccount(null))}}>Disconnect</button>
+                    <button onClick={() => {
+                        dispatch(getAccount(null))
+                    }}>Disconnect {JSON.stringify(signer)}</button>
                     <Box sx={{ width: 500 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                             <Button onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
@@ -89,7 +101,9 @@ export default function Ethers()
                 </div>
                 )
                 :
-                (<button onClick={connetToMetmask}> Connect </button>)
+                (<button onClick={async () => {
+                    await connetToMetmask();
+                }}> Connect </button>)
             }
         </main>
     )

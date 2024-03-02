@@ -3,11 +3,13 @@ import type { RootState } from '@/lib/store'
 
 
 export interface AccountState {
-  account : any
+  account : any,
+  signer : any
 }
 
 const initialAccountState: AccountState = {
-  account : null
+  account : null ,
+  signer : null
 }
 
 export const accountSlice = createSlice({
@@ -17,11 +19,15 @@ export const accountSlice = createSlice({
     getAccount: (state, action: PayloadAction<any>) => {
       state.account = action.payload
     },
+    getSigner: (state, action: PayloadAction<any>) => {
+      state.signer = action.payload
+    },
   }
 })
 
-export const { getAccount } = accountSlice.actions
+export const { getAccount , getSigner } = accountSlice.actions
 
 export const selectAccount = (state: RootState) => state.account.account;
+export const selectSigner = (state: RootState) => state.account.signer;
 
 export default accountSlice.reducer;
