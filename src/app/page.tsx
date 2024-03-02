@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { connetToMetmask } from "./ether/ether";
 import { RootState } from "@/lib/store";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { increment , decrement } from "@/lib/features/counter/counter";
+import { getAccount } from "@/lib/features/providers/provider";
+import Ethers from "./ether/ether";
 
 export default function Home() {
 
@@ -13,9 +14,8 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <button onClick={connetToMetmask}> Connect </button>
-
-      <button onClick={() => {dispatch(increment())}}>Increment</button>
+    <Ethers/>
+    <button onClick={() => {dispatch(increment())}}>Increment</button>
       <span>{count}</span>
     </main>
   );

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from "./features/counter/counter";
+import accountReducer from "./features/providers/provider"
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
         counter : counterReducer,
+        account : accountReducer,
     }
   })
 }
