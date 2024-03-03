@@ -1,15 +1,16 @@
 "use client";
-import { ethers } from "ethers";
+import { ethers , parseEther , Contract } from "ethers";
 import { BrowserProvider, parseUnits , ContractFactory } from "ethers";
 import { HDNodeWallet } from "ethers/wallet";
-import { BYTE_CODE , ABI} from "../../../config";
+import { BYTE_CODE , ABI, CONTRACT_ADDRESS} from "../../../config";
 import { VrfCoordinator , enterenceFee , gasLane , subscription_Id , callbackGasLimit , interval } from "../../../arguments.config";
-import { getAccount , getSigner } from "@/lib/features/providers/provider";
+import { getAccount , getProvider, getSigner } from "@/lib/features/providers/provider";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import Snackbar , { SnackbarOrigin } from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import { useState } from "react";
+import EnterLottery from "./initializedContract";
 
 export default function Ethers()
 {
@@ -50,6 +51,16 @@ export default function Ethers()
     let putSigner = (value : any) => {
         dispatch(getSigner(value));
     }
+
+    let putProvider = (value : any) => {
+        dispatch(getProvider(value));
+    }
+
+
+
+    // ETHER.js
+
+
     const connetToMetmask = async() => {
     
         if(window.ethereum == null)
@@ -59,19 +70,29 @@ export default function Ethers()
     
         // proviser has access to read-only request to MetaMask
         provider = new ethers.BrowserProvider(window.ethereum);
-        console.log("provider : " , provider)
-        // 
+        console.log("provider : " , provider) 
+        
+        let ok = await provider.getTransactionCount(CONTRACT_ADDRESS)
+        console.log("Ok :::::::" , ok);
+        putProvider(provider);
+        
         let signer = await provider.getSigner();
         console.log("signer : " , signer);
-        // deployContract();
+
         
         putSigner(signer);
-
-        console.log()
+        
         let address : any = await signer.getAddress()
         console.log(address);
-
+        
         putAccount(address);
+
+        
+        let contract = new Contract(CONTRACT_ADDRESS , ABI , provider)
+
+        let contractSigner = contract.connect(signer);
+        const transaction = await contractSigner.enterLottery({value : parseEther("0.011")});
+        console.log("transaction :: ::" , transaction);
     }
 
     // Render Components
@@ -98,6 +119,7 @@ export default function Ethers()
                         key={vertical + horizontal}
                     />    
                     </Box>
+                    <EnterLottery/>
                 </div>
                 )
                 :
