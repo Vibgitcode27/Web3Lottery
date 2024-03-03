@@ -10,7 +10,7 @@ import Snackbar , { SnackbarOrigin } from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import { useState } from "react";
-import EnterLottery from "./initializedContract";
+import EnterLottery from "./enterLottery";
 
 export default function Ethers()
 {
@@ -87,12 +87,13 @@ export default function Ethers()
         
         putAccount(address);
 
+        let balance = provider.getBalance(CONTRACT_ADDRESS);
+        console.log("address blanace  ::::" , balance)
         
-        let contract = new Contract(CONTRACT_ADDRESS , ABI , provider)
-
-        let contractSigner = contract.connect(signer);
-        const transaction = await contractSigner.enterLottery({value : parseEther("0.011")});
-        console.log("transaction :: ::" , transaction);
+        // let contract = new Contract(CONTRACT_ADDRESS , ABI , provider)
+        // let contractSigner = contract.connect(signer);
+        // const transaction = await contractSigner.enterLottery({value : parseEther("0.011")});
+        // console.log("transaction :: ::" , transaction);
     }
 
     // Render Components
@@ -104,7 +105,7 @@ export default function Ethers()
                 <div>
                     <button onClick={() => {
                         dispatch(getAccount(null))
-                    }}>Disconnect {JSON.stringify(signer)}</button>
+                    }}>Disconnect</button>
                     <Box sx={{ width: 500 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                             <Button onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>

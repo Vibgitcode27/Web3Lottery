@@ -13,14 +13,12 @@ export default function EnterLottery()
     }
 
     let enterLottery = async() => {
+
+        let signer = await provider.getSigner();
         let contract = new Contract(CONTRACT_ADDRESS , ABI , provider)
-        putContract(contract);
-
-        const signer = provider.getSigner(account);
-
-        // let contractSigner = contract.connect(signer);
-        // const transaction = await contractSigner.enterLottery();
-        // console.log("transaction :: ::" , transaction);
+        let contractSigner = contract.connect(signer);
+        const transaction = await contractSigner.enterLottery({value : parseEther("0.011")});
+        console.log("transaction :: ::" , transaction);
     }
 
     return (
