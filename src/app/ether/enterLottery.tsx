@@ -75,15 +75,17 @@ export default function EnterLottery()
     }
 
     let mockKeepers = async () => {
+        let signer = await provider.getSigner();
         let contract = new Contract(CONTRACT_ADDRESS , ABI , provider)
+        let contractSigner = contract.connect(signer);
         const checkData = keccak256(toUtf8Bytes(""))
-        const { upkeepNeeded } = await contract.callStatic.checkUpkeep(checkData)
+        const { upkeepNeeded } = await contractSigner.checkUpkeep(checkData)
         if (upkeepNeeded) {
-            const tx = await contract.performUpkeep(checkData)
+            const tx = await contractSigner.performUpkeep(checkData)
             const txReceipt = await tx.wait(1)
             const requestId = txReceipt.events[1].args.requestId
             console.log(`Performed upkeep with RequestId: ${requestId}`)
-            await mockVrf(requestId, contract)
+            await mockVrf(requestId, contractSigner)
         } 
         else {
                 console.log("No upkeep needed!")
@@ -146,6 +148,8 @@ export default function EnterLottery()
                     </p>
                 )
             }
+
+            <Button onClick={mockKeepers}>MockKeepers</Button>
         </div>
     )
 }
