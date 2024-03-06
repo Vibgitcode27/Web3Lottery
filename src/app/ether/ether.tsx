@@ -125,10 +125,15 @@ export default function Ethers()
                 </div>
                 )
                 :
-                (<button onClick={async () => {
-                    await connetToMetmask();
-                }}> Connect </button>)
-                // <button className="px-4 py-2 rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200">Sketch</button>
+                (<div className="flex justify-center">
+                    <button className="text-sm px-4 px-4 py-0 sm:py-0 md:py-1 lg:py-2 rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200" onClick={async () => {
+                        await connetToMetmask();
+                    }}> Connect </button>
+                    <p>&nbsp;&nbsp;&nbsp;</p>
+                    <button className="text-sm px-4 py-0 sm:py-0 md:py-1  rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200">
+                    Sign Up </button>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </div>)
             }
         </main>
     )
