@@ -83,18 +83,18 @@ export default function EnterLottery()
         if (upkeepNeeded) {
             const tx = await contractSigner.performUpkeep(checkData)
             const txReceipt = await tx.wait(1)
-            const requestId = txReceipt.events[1].args.requestId
-            console.log(`Performed upkeep with RequestId: ${requestId}`)
-            await mockVrf(requestId, contractSigner)
+            // const requestId = txReceipt.events[1].args.requestId
+            // console.log(`Performed upkeep with RequestId: ${requestId}`)
+            await mockVrf(contractSigner)
         } 
         else {
                 console.log("No upkeep needed!")
         }
     }
 
-    let mockVrf = async (requestId, contract) => {
+    let mockVrf = async (contract) => {
         console.log("We on a local network? Ok let's pretend...")
-        await contract.fulfillRandomWords(requestId, contract.address)
+        await contract.fulfillRandomWords("0x00" , contract.address)
         console.log("Responded!")
         const recentWinner = await contract.getRecentWinner()
         console.log(`The winner is: ${recentWinner}`)

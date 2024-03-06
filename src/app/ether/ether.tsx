@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { ethers , parseEther , Contract } from "ethers";
 import { BrowserProvider, parseUnits , ContractFactory } from "ethers";
 import { HDNodeWallet } from "ethers/wallet";
@@ -127,6 +128,7 @@ export default function Ethers()
                 (<button onClick={async () => {
                     await connetToMetmask();
                 }}> Connect </button>)
+                // <button className="px-4 py-2 rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200">Sketch</button>
             }
         </main>
     )
