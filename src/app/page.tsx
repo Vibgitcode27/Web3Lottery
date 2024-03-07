@@ -8,7 +8,6 @@ import { getAccount } from "@/lib/features/providers/provider";
 import { useState } from "react";
 import Ethers from "./ether/ether";
 import React from "react";
-import { Menu , HoveredLink , ProductItem , MenuItem } from "./components/navbar";
 import { TypewriterEffectSmooth } from "./components/typewriter";
 import {EvervaultCard , Icon} from "./components/explore"
 import { StickyScroll } from "./components/technologies";
@@ -42,19 +41,6 @@ const content = [
 
   return (
     <div className="styles.main bg-slate-50 pt-10" style={{height : "auto"}}>
-     {/* <Menu setActive={setActiveItem}>
-        <MenuItem setActive={setActiveItem} active={activeItem} item="Item 1">
-           <ProductItem
-            title="Product Title"
-            description="Product Description"
-            href="/product"
-            src="/product-image.jpg"
-          />
-        </MenuItem>
-        <MenuItem setActive={setActiveItem} active={activeItem} item="Item 2">
-        </MenuItem>
-        <HoveredLink href="/some-page">Link Text</HoveredLink>
-      </Menu> */}
       <h2 className="flex items-center justify-center text-xs sm:text-sm md:text-sm lg:text-base xl:text-base text-gray-500">Elevate Your Odds with EtherWager</h2>
       <TypewriterEffectSmooth className="flex items-center justify-center"
           words={[
@@ -63,7 +49,13 @@ const content = [
             { text: 'EtherWager' }
           ]}
           />
-      <Ethers/>
+          <div className="flex justify-center">
+                    <button className="text-sm px-4 px-4 py-0 sm:py-0 md:py-1 lg:py-2 rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"> Sign In </button>
+                    <p>&nbsp;&nbsp;&nbsp;</p>
+                    <button className="text-sm px-4 py-0 sm:py-0 md:py-1  rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200">
+                    Sign Up </button>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </div>
       <div className="flex justify-center items-center h-72">
         <div className="flex justify-between max-w-lg w-full">
           <EvervaultCard text="Ether.js" className="w-100" />
@@ -78,6 +70,7 @@ const content = [
       <div className="p-1">
         <StickyScroll content={content}/>
       </div>
+      <Ethers/>
     </div>
   );
 }
