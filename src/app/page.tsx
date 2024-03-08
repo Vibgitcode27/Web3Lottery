@@ -15,6 +15,7 @@ import { SignInButton , UserButton, UserProfile , SignIn } from "@clerk/nextjs";
 import SignupModal from "./components/signupModal";
 import SigninModal from "./components/signInModal";
 import EtherIMG from "./assets/ethersblue.png"
+import { TextRevealCard , TextRevealCardDescription , TextRevealCardTitle } from "./components/heroReveal";
  
 export default function Home() {
 
@@ -60,7 +61,7 @@ const style = {
 };
 
   return (
-    <div className="styles.main bg-slate-50 pt-10" style={{height : "auto"}}>
+    <div className="bg-slate-50 pt-10" style={{height : "auto"}}>
       <SignupModal open={openSignUp} onClose={() => setSignUpOpen(false)} />
       <SigninModal open={openSignIn} onClose={() => setSignInOpen(false)} />
       <UserButton/>
@@ -88,7 +89,21 @@ const style = {
           <p className="text-xl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         </div>
       </div> */}
-      <h1 className="text-3xl font-bold pl-2">Technologies Used!</h1>
+      <TextRevealCard
+        text="Empowering you, not controlling you."
+        revealText="Decentralized Web"
+        className="w-auto mx-1 mt-14"
+      >
+        <TextRevealCardTitle className="text-3xl text-center">Ether Wager:Decentralized Lottery</TextRevealCardTitle>
+        <TextRevealCardDescription>
+          <h1>Welcome to our innovative Web3 lottery application!</h1>
+          <p>Powered by Ethereum Virtual Machine (EVM) based blockchain technology, our platform brings transparency and trust to the world of lotteries.</p>
+          <p>Using cutting-edge tools such as MetaMask for seamless blockchain interaction and Chainlink's trusted random word function, we ensure fairness and randomness in selecting our winners.</p>
+          <p>Our application is built with the latest technologies, including Ether.js for Ethereum blockchain interaction, Next.js 14 for dynamic web development, Redux Toolkit for state management, and Prisma for database management, ensuring a smooth and secure experience for our users.</p>
+          <p>Join us for a chance to win big while experiencing the future of lottery gaming on the blockchain!</p>
+        </TextRevealCardDescription>
+      </TextRevealCard>
+      <h1 className="text-3xl font-bold pl-2 mt-20">Technologies Used!</h1>
       <div className="p-1">
         <StickyScroll content={content}/>
       </div>
