@@ -9,10 +9,9 @@ import { getAccount , getProvider, getSigner } from "@/lib/features/providers/pr
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import Snackbar , { SnackbarOrigin } from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
-import { Button } from "@mui/material";
 import { useState } from "react";
 import EnterLottery from "./enterLottery";
-
+import { Button, MovingBorder } from "../components/ovingBorderButton";
 export default function Ethers()
 {
     const [state, setState] = useState({
@@ -109,7 +108,7 @@ export default function Ethers()
                     }}>Disconnect</button>
                     <Box sx={{ width: 500 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                            <Button onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
+                            <Button  onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
                                 View Account
                             </Button>
                         </Box>
@@ -126,13 +125,15 @@ export default function Ethers()
                 )
                 :
                 (<div className="flex justify-center">
-                    <button className="text-sm px-4 px-4 py-0 sm:py-0 md:py-1 lg:py-2 rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200" onClick={async () => {
-                        await connetToMetmask();
-                    }}> Connect </button>
-                    <p>&nbsp;&nbsp;&nbsp;</p>
-                    <button className="text-sm px-4 py-0 sm:py-0 md:py-1  rounded-md border border-black bg-white text-neutarl-700 text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200">
-                    Sign Up </button>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <Button
+                    borderRadius="1.75rem"
+                    duration={2000}
+                    containerClassName="my-container-class"
+                    borderClassName="my-border-class"
+                    onClick={async() => {await connetToMetmask();}}
+                    >
+                        Connect
+                    </Button>
                 </div>)
             }
         </main>
