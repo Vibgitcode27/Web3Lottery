@@ -15,6 +15,7 @@
     "@mui/material": "^5.15.11",
     "@mui/styled-engine-sc": "^6.0.0-alpha.17",
     "@reduxjs/toolkit": "^2.2.1",
+    "@tabler/icons-react": "^2.47.0",
     "clsx": "^2.1.0",
     "ethers": "^6.11.1",
     "framer-motion": "^11.0.8",

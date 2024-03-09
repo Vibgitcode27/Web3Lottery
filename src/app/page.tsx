@@ -1,5 +1,5 @@
 "use client";
-// import Image from "next/image";
+import Image from "next/image";
 // import styles from "./page.module.css";
 // import { RootState } from "@/lib/store";
 // import { useAppDispatch , useAppSelector } from "@/lib/hooks";
@@ -16,7 +16,7 @@ import SignupModal from "./components/signupModal";
 import SigninModal from "./components/signInModal";
 import EtherIMG from "./assets/ethersblue.png"
 import { TextRevealCard , TextRevealCardDescription , TextRevealCardTitle } from "./components/heroReveal";
- 
+
 export default function Home() {
 
 const [openSignUp, setSignUpOpen] = React.useState(false);
@@ -28,7 +28,7 @@ const content = [
   {
     title: "Ether.js",
     description: "Ether.js is a popular library for interacting with the Ethereum blockchain.",
-    content: <div><img className="my-4" src={EtherIMG.src}/></div>,
+    content: <div><img className="my-4" src={EtherIMG.src}/></div>
   },
   {
     title: "Next.js",

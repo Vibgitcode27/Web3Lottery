@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import EnterLottery from "./enterLottery";
 import { Button, MovingBorder } from "../components/ovingBorderButton";
+import { BentoGridThirdDemo } from "../components/bentoGrid";
+
 export default function Ethers()
 {
     const [state, setState] = useState({
@@ -121,10 +123,11 @@ export default function Ethers()
                     />    
                     </Box>
                     <EnterLottery/>
+                    <BentoGridThirdDemo />
                 </div>
                 )
                 :
-                (<div className="flex justify-center">
+                (<div className="flex justify-center h-30">
                     <Button
                     borderRadius="1.75rem"
                     duration={2000}
