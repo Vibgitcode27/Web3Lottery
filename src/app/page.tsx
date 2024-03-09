@@ -16,7 +16,7 @@ import SignupModal from "./components/signupModal";
 import SigninModal from "./components/signInModal";
 import EtherIMG from "./assets/ethersblue.png"
 import { TextRevealCard , TextRevealCardDescription , TextRevealCardTitle } from "./components/heroReveal";
-
+// import { BentoGridThirdDemo } from "./components/bentoGrid";
 export default function Home() {
 
 const [openSignUp, setSignUpOpen] = React.useState(false);
@@ -61,7 +61,7 @@ const style = {
 };
 
   return (
-    <div className="bg-slate-50 pt-10" style={{height : "auto"}}>
+    <div className="bg-slate-50 pt-10" style={{height : "auto" , position : "relative"}}>
       <SignupModal open={openSignUp} onClose={() => setSignUpOpen(false)} />
       <SigninModal open={openSignIn} onClose={() => setSignInOpen(false)} />
       <UserButton/>
@@ -108,6 +108,11 @@ const style = {
         <StickyScroll content={content}/>
       </div>
       <Ethers/>
+      <div className="m-1 mt-14 z-10pt-10 rounded-xl">
+        <div className="">
+          {/* <BentoGridThirdDemo/> */}
+        </div>
+      </div>
     </div>
   );
 }

@@ -12,7 +12,6 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import EnterLottery from "./enterLottery";
 import { Button, MovingBorder } from "../components/ovingBorderButton";
-import { BentoGridThirdDemo } from "../components/bentoGrid";
 
 export default function Ethers()
 {
@@ -123,7 +122,6 @@ export default function Ethers()
                     />    
                     </Box>
                     <EnterLottery/>
-                    <BentoGridThirdDemo />
                 </div>
                 )
                 :
@@ -142,4 +140,3 @@ export default function Ethers()
         </main>
     )
 }
-
